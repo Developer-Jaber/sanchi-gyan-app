@@ -1,6 +1,7 @@
 import Courses from "@/components/sections/Courses";
 import Features from "@/components/sections/Features";
 import Hero from "@/components/sections/Hero";
+import Testimonials from "@/components/sections/Testimonials";
 
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero/>
         <Features/>
         <Courses/>
+        <Testimonials/>
       </main>
     </div>
   );
