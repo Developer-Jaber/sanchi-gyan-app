@@ -83,12 +83,12 @@ export default function LoginPage () {
 
           {/* Links */}
           <div className='flex justify-between text-gray-500 text-sm'>
-            <Link href='#' className='hover:text-[#3835A1]'>
+            <Link href='/forgot-password' className='hover:text-[#3835A1]'>
               Forgot Password?
             </Link>
-            <a href='/register' className='hover:text-[#3835A1]'>
+            <Link href='/register' className='hover:text-[#3835A1]'>
               Create Account
-            </a>
+            </Link>
           </div>
         </form>
 
