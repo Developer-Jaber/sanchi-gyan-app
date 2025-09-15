@@ -1,14 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { FaUser, FaEnvelope, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
+import { FaUser, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
 import Image from '../../../../public/authumage/registration.png'
 import Link from 'next/link'
 
-export default function SignupPage () {
+export default function LoginPage () {
   const [form, setForm] = useState({
     username: '',
-    email: '',
     password: ''
   })
 
@@ -18,8 +17,8 @@ export default function SignupPage () {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form Data:', form)
-    // Handle signup logic here (API call etc.)
+    console.log('Login Data:', form)
+    // Handle login logic here (API call etc.)
   }
 
   return (
@@ -35,16 +34,15 @@ export default function SignupPage () {
         <FaArrowCircleLeft />
         <span>Back to Home</span>
       </Link>
-
-      {/* Main container */}
+      {/* Main Container */}
       <div className='flex md:flex-row flex-col justify-between items-center bg-white p-8 rounded-2xl w-11/12 md:w-9/12 lg:w-8/12'>
-        {/* Signup Form */}
+        {/* Login Form */}
         <form
           onSubmit={handleSubmit}
           className='flex flex-col space-y-6 w-full md:w-1/2'
         >
           <h2 className='font-bold text-gray-700 text-2xl md:text-left text-center'>
-            Create an Account
+            Welcome Back
           </h2>
 
           {/* Username */}
@@ -55,20 +53,6 @@ export default function SignupPage () {
               name='username'
               placeholder='Username'
               value={form.username}
-              onChange={handleChange}
-              className='focus:outline-none w-full'
-              required
-            />
-          </div>
-
-          {/* Email */}
-          <div className='flex items-center space-x-3 px-4 py-2 border rounded-full'>
-            <FaEnvelope className='text-[#9FD9D8]' />
-            <input
-              type='email'
-              name='email'
-              placeholder='Email'
-              value={form.email}
               onChange={handleChange}
               className='focus:outline-none w-full'
               required
@@ -94,24 +78,23 @@ export default function SignupPage () {
             type='submit'
             className='bg-[#9FD9D8] hover:bg-[#7bb9b8] py-2 rounded-full font-semibold text-white transition'
           >
-            Sign Up
+            Log In
           </button>
 
-          <p className='text-gray-500 text-sm text-center'>
-            Already have an account?{' '}
-            <Link href='/login' className='font-semibold text-[#3835A1]'>
-              Log in
+          {/* Links */}
+          <div className='flex justify-between text-gray-500 text-sm'>
+            <Link href='#' className='hover:text-[#3835A1]'>
+              Forgot Password?
             </Link>
-          </p>
+            <a href='/register' className='hover:text-[#3835A1]'>
+              Create Account
+            </a>
+          </div>
         </form>
 
         {/* Right Side Illustration */}
         <div className='hidden md:flex justify-center w-1/2'>
-          <img
-            src={Image.src}
-            alt='Education Illustration'
-            className='max-w-sm'
-          />
+          <img src={Image.src} alt='Login Illustration' className='max-w-sm' />
         </div>
       </div>
     </div>
