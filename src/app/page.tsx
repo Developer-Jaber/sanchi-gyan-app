@@ -1,3 +1,4 @@
+import Courses from "@/components/sections/Courses";
 import Features from "@/components/sections/Features";
 import Hero from "@/components/sections/Hero";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <main>
         <Hero/>
         <Features/>
+        <Courses/>
       </main>
     </div>
   );
