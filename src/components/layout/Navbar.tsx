@@ -7,10 +7,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   const navLink = [
-    { name: 'Home', href: '/' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
+    { id: 1, name: 'Home', href: '/' },
+    { id: 2, name: 'Courses', href: '/courses' },
+    { id: 3, name: 'About', href: '/about' },
+    { id: 4, name: 'Contact', href: '/contact' }
   ]
   return (
     <nav className='z-50 fixed bg-white shadow-lg w-full'>
@@ -29,6 +29,7 @@ const Navbar = () => {
             {navLink.map(link => {
               return (
                 <Link
+                  key={link.id}
                   href={link.href}
                   className='px-3 py-2 rounded-md font-medium text-gray-700 hover:text-indigo-600 text-sm'
                 >
@@ -38,10 +39,16 @@ const Navbar = () => {
             })}
 
             <div className='flex space-x-4'>
-              <Link href='/login' className='bg-white hover:bg-gray-100 px-4 py-2 border border-indigo-600 rounded-md font-medium text-indigo-600 text-sm'>
+              <Link
+                href='/login'
+                className='bg-white hover:bg-gray-100 px-4 py-2 border border-indigo-600 rounded-md font-medium text-indigo-600 text-sm'
+              >
                 Login
               </Link>
-              <Link href='/register' className='bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium text-white text-sm'>
+              <Link
+                href='/register'
+                className='bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium text-white text-sm'
+              >
                 Sign Up
               </Link>
             </div>
@@ -89,6 +96,7 @@ const Navbar = () => {
             {navLink.map(link => {
               return (
                 <Link
+                  key={link.id}
                   href={link.href}
                   className='block px-3 py-2 rounded-md font-medium text-gray-700 hover:text-indigo-600 text-base'
                 >
