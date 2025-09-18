@@ -1,90 +1,93 @@
-import Link from "next/link"
+"use client"
+import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card"
 
-const Courses = () => {
-  const courses = [
-    {
-      title: 'Web Development',
-      description:
-        'Master HTML, CSS, JavaScript, React, Node.js and more to build modern web applications.',
-      image: '/web-dev.jpg',
-      duration: '12 weeks',
-      level: 'Beginner to Advanced'
-    },
-    {
-      title: 'Data Science',
-      description:
-        'Learn Python, statistics, machine learning, and data visualization to become a data scientist.',
-      image: '/data-science.jpg',
-      duration: '16 weeks',
-      level: 'Intermediate'
-    },
-    {
-      title: 'UI/UX Design',
-      description:
-        'Create beautiful and user-friendly interfaces with modern design principles and tools.',
-      image: '/ui-ux.jpg',
-      duration: '10 weeks',
-      level: 'Beginner'
-    },
-    {
-      title: 'Digital Marketing',
-      description:
-        'Learn SEO, social media marketing, email campaigns, and analytics to boost business growth.',
-      image: '/digital-marketing.jpg',
-      duration: '8 weeks',
-      level: 'Beginner'
-    }
-  ]
+import { Star } from "lucide-react"
+import SectionTitle from "../shared/SectionTitle"
+import Button from "../shared/Button"
 
+
+
+
+
+const courses = [
+  {
+    title: "Mathematics for High School",
+    description: "Master algebra, geometry, and advanced problem-solving techniques.",
+    image: "https://i.ibb.co/XfLHMKg7/math.jpg",
+    instructor: "Dr. Anil Sharma",
+    rating: 4.9,
+    students: "5K+",
+  },
+  {
+    title: "Science Explorers",
+    description: "Interactive physics, chemistry, and biology with experiments.",
+    image: "https://i.ibb.co/TDcJzyY1/science.jpg",
+    instructor: "Prof. Maya Gurung",
+    rating: 4.8,
+    students: "3K+",
+  },
+  {
+    title: "English Mastery",
+    description: "Improve your grammar, writing, and communication skills.",
+    image: "https://i.ibb.co/ZzXY1SZp/english.jpg",
+    instructor: "Mr. Ramesh Adhikari",
+    rating: 4.7,
+    students: "4K+",
+  },
+]
+
+export default function Courses() {
   return (
-    <section className='bg-gray-50 py-12 md:py-20'>
-      <div className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'>
-        <div className='text-center'>
-          <h2 className='font-bold text-gray-900 text-3xl md:text-4xl'>
-            Popular Courses
-          </h2>
-          <p className='mx-auto mt-4 max-w-3xl text-gray-600 text-lg'>
-            Explore our most popular courses and start your learning journey
-            today.
-          </p>
-        </div>
+    <section className="bg-gradient-to-b from-white via-[#fdfdfd] to-[#fafafa] py-20">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        
+        {/*Section title */}
+        <SectionTitle title="Popular Courses" subtitle="Discover top courses designed for high school students in Nepal to learn, grow, and succeed."></SectionTitle>
 
-        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-12'>
+        {/* Courses Grid */}
+        <div className="gap-8 grid grid-cols-1 md:grid-cols-3 mt-16">
           {courses.map((course, index) => (
-            <div
+            <motion.div
               key={index}
-              className='bg-white shadow-md hover:shadow-lg rounded-lg overflow-hidden transition-shadow duration-300'
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <div className='flex justify-center items-center bg-indigo-100 h-48'>
-                <span className='font-medium text-indigo-500'>
-                  {course.title}
-                </span>
-              </div>
-              <div className='p-6'>
-                <h3 className='mb-2 font-semibold text-gray-900 text-xl'>
-                  {course.title}
-                </h3>
-                <p className='mb-4 text-gray-600'>{course.description}</p>
-                <div className='flex justify-between text-gray-500 text-sm'>
-                  <span>{course.duration}</span>
-                  <span>{course.level}</span>
+              <Card className="group shadow-lg hover:shadow-2xl rounded-2xl overflow-hidden transition-all duration-500">
+                <div className="relative">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="top-4 right-4 absolute bg-white/90 shadow-md backdrop-blur-md px-3 py-1 rounded-full font-semibold text-[var(--secondary)] text-sm">
+                    {course.students} Students
+                  </div>
                 </div>
-                <Link href='/subscription' className='bg-indigo-600 hover:bg-indigo-700 mt-4 px-4 py-2 rounded w-full font-medium text-white transition duration-300'>
-                  Enroll Now
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-[#EDBEA4] text-xl transition-colors">
+                    {course.title}
+                  </h3>
+                  <p className="mt-2 text-gray-600 text-md">{course.description}</p>
 
-        <div className='mt-12 text-center'>
-          <Link href='/courses' className='bg-white hover:bg-gray-100 shadow-sm px-8 py-3 border border-indigo-600 rounded-lg font-medium text-indigo-600 transition duration-300'>
-            View All Courses
-          </Link>
+                  {/* Instructor + Rating */}
+                  <div className="flex justify-between items-center mt-4">
+                    <span className="font-bold text-gray-700 text-sm">{course.instructor}</span>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star size={16} fill="currentColor" />
+                      <span className="text-sm">{course.rating}</span>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <Button className="mt-5 py-2 w-full text-lg">Enroll Now</Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
-
-export default Courses
