@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import heroImg from '../../../public/Hero_online_edu.png'
 import { motion } from 'framer-motion'
+import Button from '../shared/Button'
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -71,12 +72,8 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className='flex sm:flex-row flex-col justify-center md:justify-start gap-4 mt-8'
             >
-              <button className='bg-gradient-to-r from-[#9AD0D3] hover:from-[#8AC8CC] to-[#7ABFC3] hover:to-[#6AB0B4] shadow-lg px-8 py-4 rounded-xl font-semibold text-white transition-all hover:-translate-y-1 duration-300 transform'>
-                Explore Courses
-              </button>
-              <button className='bg-transparent hover:bg-white/10 shadow-sm px-8 py-4 border border-[#9AD0D3] rounded-xl font-semibold text-[#9AD0D3] transition-all duration-300'>
-                Learn More
-              </button>
+              <Button className='px-4 py-3 text-lg'>Explore Courses</Button>
+              <Button variant='secondary' className='px-4 py-3 text-lg'>Explore Courses</Button>
             </motion.div>
 
             {/* Stats */}
