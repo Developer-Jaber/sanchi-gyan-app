@@ -9,23 +9,24 @@ const Navbar = () => {
   const navLink = [
     { id: 1, name: 'Home', href: '/' },
     { id: 2, name: 'Courses', href: '/courses' },
-    { id: 3, name: 'About', href: '/about' },
-    { id: 4, name: 'Contact', href: '/contact' }
+    { id: 3, name: 'Pricing', href: '/pricing' },
+    { id: 4, name: 'About', href: '/about' },
+    { id: 5, name: 'Contact', href: '/contact' }
   ]
   return (
-    <nav className='z-50 fixed bg-white shadow-lg w-full'>
+    <nav className='z-50 fixed w-full'>
       <div className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'>
         <div className='flex justify-between h-16'>
           <div className='flex items-center'>
             <Link href='/' className='flex flex-shrink-0 items-center'>
-              <span className='font-bold text-indigo-600 text-2xl'>
+              <span className='font-bold text-2xl'>
                 Sanchi Gyan
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:flex items-center space-x-8'>
+          <div className='hidden md:flex items-center space-x-4'>
             {navLink.map(link => {
               return (
                 <Link
