@@ -235,7 +235,7 @@ export default function SubscriptionPage () {
 
                 <div className='px-6 pt-6 pb-8 border-gray-200 border-t'>
                   <h4 className='mb-4 font-bold text-gray-900 text-sm uppercase tracking-wide'>
-                    What's included
+                    What&apos;s included
                   </h4>
                   <ul className='space-y-3'>
                     {plan.features.map((feature, index) => (
@@ -306,7 +306,7 @@ export default function SubscriptionPage () {
               </h3>
               <p className='text-gray-600'>
                 Yes, you can upgrade or downgrade your plan at any time. When
-                upgrading, you'll immediately get access to the new features.
+                upgrading, you&apos;ll immediately get access to the new features.
                 When downgrading, the changes will take effect at the end of
                 your current billing cycle.
               </p>
@@ -318,7 +318,7 @@ export default function SubscriptionPage () {
               </h3>
               <p className='text-gray-600'>
                 We offer a 14-day money-back guarantee for all annual plans. If
-                you're not satisfied with your purchase, you can request a full
+                you&apos;re not satisfied with your purchase, you can request a full
                 refund within 14 days of signing up.
               </p>
             </div>
@@ -329,7 +329,7 @@ export default function SubscriptionPage () {
               </h3>
               <p className='text-gray-600'>
                 Yes, you can cancel your subscription at any time. After
-                cancellation, you'll still have access until the end of your
+                cancellation, you&apos;ll still have access until the end of your
                 current billing period.
               </p>
             </div>
