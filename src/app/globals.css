@@ -1,5 +1,47 @@
 @import "tailwindcss";
 
+:root {
+  /* Light Theme - Your Preferred Colors */
+  --text: #082015;
+  --primary: #9AD0D3;
+  --secondary: #EDBEA4;
+  /* --accent: #1c3d4b;
+  --background: #f0fce8;
+  --foreground: #082015;
+  --card: #ffffff;
+  --card-foreground: #082015;
+  --popover: #ffffff;
+  --popover-foreground: #082015;
+  --primary-foreground: #ffffff;
+  --secondary-foreground: #ffffff;
+  --muted: #f0fce8;
+  --muted-foreground: #55665e;
+  --accent-foreground: #ffffff;
+  --destructive: #e53e3e;
+  --border: #d1e0d8;
+  --input: #d1e0d8;
+  --ring: #b3c6bc;
+  --radius: 0.625rem; */
+  
+  /* Chart colors - adjust these to match your theme
+  --chart-1: #3fcd88;
+  --chart-2: #4325ba;
+  --chart-3: #1c3d4b;
+  --chart-4: #2dd4bf;
+  --chart-5: #84cc16; */
+  
+  /* Sidebar colors
+  --sidebar: #ffffff;
+  --sidebar-foreground: #082015;
+  --sidebar-primary: #3fcd88;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0fce8;
+  --sidebar-accent-foreground: #082015;
+  --sidebar-border: #d1e0d8;
+  --sidebar-ring: #b3c6bc; */
+}
+
+
 
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }

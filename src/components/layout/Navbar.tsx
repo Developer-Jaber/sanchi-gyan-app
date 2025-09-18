@@ -1,9 +1,13 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Logo from '../../../public/Untitled design (5).png'
+import Button from '../shared/Button'
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
 
   const navLink = [
@@ -13,15 +17,33 @@ const Navbar = () => {
     { id: 4, name: 'About', href: '/about' },
     { id: 5, name: 'Contact', href: '/contact' }
   ]
+
+   // Navbar scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) setScrolled(true)
+      else setScrolled(false)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+
   return (
-    <nav className='z-50 fixed w-full'>
+    <nav className={`z-50 fixed w-full transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/90 shadow-md py-2 backdrop-blur-sm'
+          : 'bg-transparent py-5'
+      }`}>
       <div className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'>
         <div className='flex justify-between h-16'>
           <div className='flex items-center'>
             <Link href='/' className='flex flex-shrink-0 items-center'>
-              <span className='font-bold text-2xl'>
+              {/* <span className='font-bold text-3xl'>
                 Sanchi Gyan
-              </span>
+              </span> */}
+              <Image src={Logo} width={250} alt='Sanchi Gyan'/>
             </Link>
           </div>
 
@@ -32,7 +54,7 @@ const Navbar = () => {
                 <Link
                   key={link.id}
                   href={link.href}
-                  className='px-3 py-2 rounded-md font-medium text-gray-700 hover:text-indigo-600 text-sm'
+                  className='px-3 py-2 rounded-md font-medium text-gray-700 text-md hover:text-indigo-600'
                 >
                   {link.name}
                 </Link>
@@ -40,18 +62,20 @@ const Navbar = () => {
             })}
 
             <div className='flex space-x-4'>
-              <Link
+              {/* <Link
                 href='/login'
-                className='bg-white hover:bg-gray-100 px-4 py-2 border border-indigo-600 rounded-md font-medium text-indigo-600 text-sm'
+                className='bg-white hover:bg-gray-100 border border-indigo-600 rounded-md text-indigo-600 text-sm'
               >
                 Login
-              </Link>
-              <Link
+              </Link> */}
+              <Button variant='secondary' className='px-4 py-2'>Login</Button>
+              {/* <Link
                 href='/register'
                 className='bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium text-white text-sm'
               >
-                Sign Up
-              </Link>
+                
+              </Link> */}
+              <Button className='px-4 py-2'>Get Started</Button>
             </div>
           </div>
 
@@ -106,9 +130,10 @@ const Navbar = () => {
               )
             })}
             <div className='pt-4 pb-3 border-gray-200 border-t'>
-              <button className='bg-white hover:bg-gray-100 mb-2 px-4 py-2 border border-indigo-600 rounded-md w-full font-medium text-indigo-600 text-sm'>
+              {/* <button className='bg-white hover:bg-gray-100 mb-2 px-4 py-2 border border-indigo-600 rounded-md w-full font-medium text-indigo-600 text-sm'>
                 Login
-              </button>
+              </button> */}
+              <Button>Login</Button>
               <button className='bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md w-full font-medium text-white text-sm'>
                 Sign Up
               </button>
