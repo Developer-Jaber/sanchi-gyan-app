@@ -15,7 +15,7 @@ const Navbar = () => {
   const navLink = [
     { id: 1, name: 'Home', href: '/' },
     { id: 2, name: 'Courses', href: '/courses' },
-    { id: 3, name: 'Pricing', href: '/pricing' },
+    { id: 3, name: 'Pricing', href: '/subscription' },
     { id: 4, name: 'About', href: '/about' },
     { id: 5, name: 'Contact', href: '/contact' }
   ]

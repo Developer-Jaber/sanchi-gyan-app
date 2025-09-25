@@ -88,6 +88,9 @@ export default function Courses() {
           ))}
         </div>
       </div>
+      <div>
+        <Button variant="secondary" className="flex justify-center mx-auto mt-10 p-3 text-lg">Explore Courses</Button>
+      </div>
     </section>
   )
 }

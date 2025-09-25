@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
 
 export default function SubscriptionPage () {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>(
@@ -346,8 +345,6 @@ export default function SubscriptionPage () {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
