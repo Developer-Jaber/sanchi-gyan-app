@@ -17,7 +17,8 @@ const Navbar = () => {
     { id: 2, name: 'Courses', href: '/courses' },
     { id: 3, name: 'Pricing', href: '/subscription' },
     { id: 4, name: 'About', href: '/about' },
-    { id: 5, name: 'Contact', href: '/contact' }
+    { id: 5, name: 'Contact', href: '/contact' },
+    { id: 6, name: 'Careers', href: '/careers' }
   ]
 
    // Navbar scroll effect
@@ -64,11 +65,11 @@ const Navbar = () => {
             })}
 
             <div className='flex space-x-4'>
-              <Link
+              {/* <Link
                 href='/login'
               >
                 <Button variant='secondary' className='px-4 py-2'>Login</Button>
-              </Link>
+              </Link> */}
               
               <Link
                 href='/register'
