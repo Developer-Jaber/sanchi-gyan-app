@@ -2,23 +2,37 @@
 
 import { useState } from 'react'
 import { FaUser, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
-import Image from '../../../../public/authumage/registration.png'
+import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import api from '@/lib/axios'
 
 export default function LoginPage () {
   const [form, setForm] = useState({
-    username: '',
+    email: '', // Changed from username to email to match backend
     password: ''
   })
+  const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+    setError('')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Login Data:', form)
-    // Handle login logic here (API call etc.)
+    try {
+      const response = await api.post('/auth/login', {
+        email: form.email,
+        password: form.password
+      })
+      localStorage.setItem('token', response.data.access_token)
+      alert('Login successful!')
+      router.push('/dashboard')
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Login failed. Try again.')
+    }
   }
 
   return (
@@ -34,9 +48,8 @@ export default function LoginPage () {
         <FaArrowCircleLeft />
         <span>Back to Home</span>
       </Link>
-      {/* Main Container */}
+
       <div className='flex md:flex-row flex-col justify-between items-center bg-white p-8 rounded-2xl w-11/12 md:w-9/12 lg:w-8/12'>
-        {/* Login Form */}
         <form
           onSubmit={handleSubmit}
           className='flex flex-col space-y-6 w-full md:w-1/2'
@@ -44,15 +57,16 @@ export default function LoginPage () {
           <h2 className='font-bold text-gray-700 text-2xl md:text-left text-center'>
             Welcome Back
           </h2>
+          {error && <p className='text-red-500 text-sm'>{error}</p>}
 
-          {/* Username */}
+          {/* Email */}
           <div className='flex items-center space-x-3 px-4 py-2 border rounded-full'>
             <FaUser className='text-[#9FD9D8]' />
             <input
-              type='text'
-              name='username'
-              placeholder='Username'
-              value={form.username}
+              type='email'
+              name='email'
+              placeholder='Email'
+              value={form.email}
               onChange={handleChange}
               className='focus:outline-none w-full'
               required
@@ -73,7 +87,6 @@ export default function LoginPage () {
             />
           </div>
 
-          {/* Submit */}
           <button
             type='submit'
             className='bg-[#9FD9D8] hover:bg-[#7bb9b8] py-2 rounded-full font-semibold text-white transition'
@@ -81,7 +94,6 @@ export default function LoginPage () {
             Log In
           </button>
 
-          {/* Links */}
           <div className='flex justify-between text-gray-500 text-sm'>
             <Link href='/forgot-password' className='hover:text-[#3835A1]'>
               Forgot Password?
@@ -92,9 +104,13 @@ export default function LoginPage () {
           </div>
         </form>
 
-        {/* Right Side Illustration */}
         <div className='hidden md:flex justify-center w-1/2'>
-          <img src={Image.src} alt='Login Illustration' className='max-w-sm' />
+          <Image
+            src='/authumage/registration.png'
+            alt='Login Illustration'
+            width={300}
+            height={300}
+          />
         </div>
       </div>
     </div>

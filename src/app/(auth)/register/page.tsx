@@ -2,8 +2,11 @@
 
 import { useState } from 'react'
 import { FaUser, FaEnvelope, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
-import Image from '../../../../public/authumage/registration.png'
+import authImage from '../../../../public/authumage/registration.png'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import api from '@/lib/axios'
+import Image from 'next/image'
 
 export default function SignupPage () {
   const [form, setForm] = useState({
@@ -11,15 +14,28 @@ export default function SignupPage () {
     email: '',
     password: ''
   })
+  const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+    setError('') // Clear error on input change
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form Data:', form)
-    // Handle signup logic here (API call etc.)
+    try {
+      await api.post('/auth/signup', {
+        email: form.email,
+        password: form.password,
+        name: form.username,
+        roleId: 1 // Hardcoded for Student; adjust if dynamic role selection
+      })
+      alert('Signup successful! Please log in.')
+      router.push('/login')
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Signup failed. Try again.')
+    }
   }
 
   return (
@@ -46,6 +62,7 @@ export default function SignupPage () {
           <h2 className='font-bold text-gray-700 text-2xl md:text-left text-center'>
             Create an Account
           </h2>
+          {error && <p className='text-red-500 text-sm'>{error}</p>}
 
           {/* Username */}
           <div className='flex items-center space-x-3 px-4 py-2 border rounded-full'>
@@ -107,10 +124,11 @@ export default function SignupPage () {
 
         {/* Right Side Illustration */}
         <div className='hidden md:flex justify-center w-1/2'>
-          <img
-            src={Image.src}
+          <Image
+            src={authImage}
             alt='Education Illustration'
-            className='max-w-sm'
+            width={300}
+            height={300}
           />
         </div>
       </div>

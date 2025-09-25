@@ -5,10 +5,12 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../public/Untitled design (5).png'
 import Button from '../shared/Button'
+import { useAuth } from '@/lib/auth-context'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
+  const {user} = useAuth();
 
   const navLink = [
     { id: 1, name: 'Home', href: '/' },
