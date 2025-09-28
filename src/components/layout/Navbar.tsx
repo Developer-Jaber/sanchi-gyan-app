@@ -11,6 +11,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
   const {user} = useAuth();
+  console.log(user)
 
   const navLink = [
     { id: 1, name: 'Home', href: '/' },

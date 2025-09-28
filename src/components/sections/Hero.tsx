@@ -73,7 +73,7 @@ const Hero = () => {
               className='flex sm:flex-row flex-col justify-center md:justify-start gap-4 mt-8'
             >
               <Button className='px-4 py-3 text-lg'>Explore Courses</Button>
-              <Button variant='secondary' className='px-4 py-3 text-lg'>Explore Courses</Button>
+              <Button variant='secondary' className='px-4 py-3 text-lg'>Learn more</Button>
             </motion.div>
 
             {/* Stats */}
