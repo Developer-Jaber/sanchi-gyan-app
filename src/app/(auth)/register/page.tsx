@@ -33,8 +33,14 @@ export default function SignupPage () {
       })
       alert('Signup successful! Please log in.')
       router.push('/login')
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Signup failed. Try again.')
+    } catch (err) {
+      let errorMessage = 'Invalid credentials. Please try again.'
+      if (err instanceof Error) {
+        errorMessage = err.message
+      } else if (typeof err === 'string') {
+        errorMessage = err
+      }
+      setError(errorMessage)
     }
   }
 

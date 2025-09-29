@@ -47,7 +47,6 @@ import { motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
@@ -561,56 +560,6 @@ type DashboardLayoutProps = {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [open, setOpen] = useState(true)
-  const [isLoading, setIsLoading] = useState(true)
-//   const { data: session, status } = useSession()
-  const router = useRouter()
-  const pathname = usePathname()
-
-//   useEffect(() => {
-//     if (status === 'loading') return
-
-//     if (!session) {
-//       router.push('/signin')
-//       return
-//     }
-
-//     const userRole = session.user.role?.toLowerCase()
-
-//     // Role-based route protection
-//     if (pathname.startsWith('/admin') && userRole !== 'admin') {
-//       router.push('/unauthorized')
-//       return
-//     }
-
-//     if (pathname.startsWith('/teacher') && userRole !== 'teacher') {
-//       router.push('/unauthorized')
-//       return
-//     }
-
-//     if (pathname.startsWith('/student') && userRole !== 'student') {
-//       router.push('/unauthorized')
-//       return
-//     }
-
-//     setIsLoading(false)
-//   }, [session, status, pathname, router])
-
-//   // Don't render if no session
-//   if (!session) {
-//     return null
-//   }
-
-//   const userRole = session.user.role
-
-//   const filteredRouteGroups = ROUTE_GROUPS.filter(group => {
-//     if (userRole === 'admin') {
-//       return group.group === 'College Management'
-//     } else if (userRole === 'student') {
-//       return group.group === 'Student Management'
-//     }
-//     return false
-//   })
-
   return (
     <>
       <div className='flex w-full'>
@@ -646,13 +595,13 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             
           </CollapsibleContent>
         </Collapsible>
-        {/* <main
+        <main
           className={`transition-margin flex-1 p-4 duration-300 w-full ${
             open ? 'ml-64' : 'ml-0'
           }`}
         >
           {children}
-        </main> */}
+        </main>
       </div>
     </>
   )

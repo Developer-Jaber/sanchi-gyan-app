@@ -2,7 +2,7 @@
 import Button from "@/components/shared/Button"
 import SectionTitle from "@/components/shared/SectionTitle"
 import { motion } from "framer-motion"
-import { Rocket, Users, Heart, GraduationCap, Star, MapPin, Clock, DollarSign, BookOpen, Zap, Award, UsersIcon } from "lucide-react"
+import { Rocket, Users, Heart, GraduationCap, MapPin, Clock, DollarSign, BookOpen, Zap, Award, UsersIcon } from "lucide-react"
 import { useState } from "react"
 
 const jobOpenings = [
@@ -15,7 +15,7 @@ const jobOpenings = [
     experience: "2+ years",
     salary: "₨ 40,000 - ₨ 60,000",
     deadline: "2024-03-15",
-    description: "We're looking for passionate Mathematics teachers to create engaging content for classes 8-10.",
+    description: "We&apos;re looking for passionate Mathematics teachers to create engaging content for classes 8-10.",
     requirements: ["B.Ed. in Mathematics", "Teaching License", "Content Creation Skills", "Tech Savvy"],
     benefits: ["Flexible Hours", "Professional Development", "Health Insurance", "Performance Bonus"],
     urgency: "high",
@@ -146,7 +146,7 @@ const cultureValues = [
   {
     icon: UsersIcon,
     title: "Student First",
-    description: "Every decision is made with students' success in mind"
+    description: "Every decision is made with student&apos;s success in mind"
   },
   {
     icon: Zap,
@@ -180,7 +180,7 @@ export default function Careers() {
   })
 
   const featuredJobs = jobOpenings.filter(job => job.featured)
-  const selectedJobData = jobOpenings.find(job => job.id === selectedJob)
+  // const selectedJobData = jobOpenings.find(job => job.id === selectedJob)
 
   return (
     <div className="bg-gradient-to-br from-white via-[#f8fdff] to-[#f0f9ff] min-h-screen">
@@ -209,8 +209,8 @@ export default function Careers() {
                 </span>
               </h1>
               <p className="mb-8 text-gray-600 text-lg md:text-xl leading-relaxed">
-                Join Sanchi Gyan in our mission to transform education in Nepal. We're looking for 
-                passionate individuals who want to make a real impact on students' lives through 
+                Join Sanchi Gyan in our mission to transform education in Nepal. We&apos;re looking for 
+                passionate individuals who want to make a real impact on student&apos;s lives through 
                 innovative technology and quality education.
               </p>
               <div className="flex gap-4">
@@ -486,8 +486,8 @@ export default function Careers() {
               Ready to Make an Impact?
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-white/90 text-lg">
-              Join us in our mission to transform education in Nepal. Even if you don't see the perfect role, 
-              we're always interested in meeting passionate people.
+              Join us in our mission to transform education in Nepal. Even if you don&apos;t see the perfect role, 
+              we&apos;re always interested in meeting passionate people.
             </p>
             <div className="flex sm:flex-row flex-col justify-center gap-4">
               <Button variant="secondary" className="bg-white hover:bg-gray-100 px-8 py-3 text-[#06a6ae] text-lg">

@@ -17,8 +17,15 @@ export default function ForgotPasswordPage () {
       const response = await api.post('/auth/reset-password', { email })
       setMessage(response.data.message || 'Reset link sent to your email!')
       setError('')
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to send reset link.')
+    } catch (err) {
+      let errorMessage = 'Failed to send reset link.'
+
+      if (err instanceof Error) {
+        errorMessage = err.message
+      } else if (typeof err === 'string') {
+        errorMessage = err
+      }
+      setError(errorMessage)
       setMessage('')
     }
   }

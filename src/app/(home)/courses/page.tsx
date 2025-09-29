@@ -13,6 +13,7 @@ import {
 import { useState } from 'react'
 import SectionTitle from '@/components/shared/SectionTitle'
 import Button from '@/components/shared/Button'
+import Image from 'next/image'
 
 const courses = [
   {
@@ -265,10 +266,12 @@ export default function Courses () {
 
                 {/* Course Image */}
                 <div className='relative overflow-hidden'>
-                  <img
+                  <Image
                     src={course.image}
                     alt={course.title}
                     className='w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700'
+                    width={400}
+                    height={500}
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
 

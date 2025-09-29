@@ -35,7 +35,7 @@ const contactMethods = [
   {
     icon: Clock,
     title: "Office Hours",
-    description: "We're here to help you",
+    description: "We&apos;re here to help you",
     details: "Sun-Fri: 7:00 AM - 7:00 PM",
     secondary: "Sat: 9:00 AM - 5:00 PM",
     action: "View Schedule",
@@ -104,7 +104,7 @@ export default function Contact() {
               Get in <span className="text-[#06a6ae]">Touch</span>
             </h1>
             <p className="mx-auto max-w-3xl text-gray-600 text-lg md:text-xl leading-relaxed">
-              We're here to help you on your educational journey. Whether you have questions about courses, 
+              We&apos;re here to help you on your educational journey. Whether you have questions about courses, 
               need technical support, or want to discuss learning opportunities, our team is ready to assist you.
             </p>
           </motion.div>
@@ -160,7 +160,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h2 className="font-bold text-gray-900 text-2xl">Send us a Message</h2>
-                    <p className="text-gray-600">We'll get back to you within 24 hours</p>
+                    <p className="text-gray-600">We&apos;ll get back to you within 24 hours</p>
                   </div>
                 </div>
 

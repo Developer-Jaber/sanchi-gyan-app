@@ -23,7 +23,7 @@ const values = [
   {
     icon: Heart,
     title: "Our Vision",
-    description: "To become Nepal's leading educational platform that empowers students to achieve academic excellence and lifelong learning.",
+    description: "To become Nepal&apos;s leading educational platform that empowers students to achieve academic excellence and lifelong learning.",
     color: "from-pink-500 to-rose-400"
   },
   {
@@ -101,7 +101,7 @@ export default function About() {
                 </span>
               </h1>
               <p className="mb-8 text-gray-600 text-lg md:text-xl leading-relaxed">
-                Sanchi Gyan is Nepal's premier online educational platform, dedicated to providing 
+                Sanchi Gyan is Nepal&apos;s premier online educational platform, dedicated to providing 
                 high-quality learning experiences for students from classes 2 to 10. We combine 
                 traditional educational values with modern technology to create engaging, effective, 
                 and accessible learning solutions.
@@ -242,7 +242,7 @@ export default function About() {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <SectionTitle
             title="Our Journey"
-            subtitle="From humble beginnings to becoming Nepal's trusted educational partner"
+            subtitle="From humble beginnings to becoming Nepal&apos;s trusted educational partner"
           />
           
           <div className="relative mt-16">

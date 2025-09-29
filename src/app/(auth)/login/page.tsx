@@ -30,8 +30,15 @@ export default function LoginPage () {
       localStorage.setItem('token', response.data.access_token)
       alert('Login successful!')
       router.push('/dashboard')
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed. Try again.')
+    } catch (err) {
+      let errorMessage = 'Login failed. Try again.'
+
+      if (err instanceof Error) {
+        errorMessage = err.message
+      } else if (typeof err === 'string') {
+        errorMessage = err
+      }
+      setError(errorMessage)
     }
   }
 
