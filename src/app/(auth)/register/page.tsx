@@ -5,7 +5,6 @@ import { FaUser, FaEnvelope, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
 import authImage from '../../../../public/authumage/registration.png'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import api from '@/lib/axios'
 import Image from 'next/image'
 
 export default function SignupPage () {
@@ -15,6 +14,7 @@ export default function SignupPage () {
     password: ''
   })
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,23 +24,32 @@ export default function SignupPage () {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
     try {
-      await api.post('/auth/signup', {
-        email: form.email,
-        password: form.password,
-        name: form.username,
-        roleId: 1 // Hardcoded for Student; adjust if dynamic role selection
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.username,
+          email: form.email,
+          password: form.password
+        })
       })
-      alert('Signup successful! Please log in.')
-      router.push('/login')
-    } catch (err) {
-      let errorMessage = 'Invalid credentials. Please try again.'
-      if (err instanceof Error) {
-        errorMessage = err.message
-      } else if (typeof err === 'string') {
-        errorMessage = err
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.message || 'An error occurred.')
+      } else {
+        alert('Signup successful! Please log in.')
+        router.push('/')
       }
-      setError(errorMessage)
+    } catch (error) {
+      setError("An error occured. Please try again.")
+    }finally {
+      setLoading(false)
     }
   }
 
@@ -68,7 +77,11 @@ export default function SignupPage () {
           <h2 className='font-bold text-gray-700 text-2xl md:text-left text-center'>
             Create an Account
           </h2>
-          {error && <p className='text-red-500 text-sm'>{error}</p>}
+          {error && (
+            <div className="bg-red-100 px-4 py-3 border border-red-400 rounded text-red-700">
+              {error}
+            </div>
+          )}
 
           {/* Username */}
           <div className='flex items-center space-x-3 px-4 py-2 border rounded-full'>
@@ -115,9 +128,10 @@ export default function SignupPage () {
           {/* Submit */}
           <button
             type='submit'
+            disabled={loading}
             className='bg-[#9FD9D8] hover:bg-[#7bb9b8] py-2 rounded-full font-semibold text-white transition'
           >
-            Sign Up
+           {loading ? "Creating account..." : "Sign up"}
           </button>
 
           <p className='text-gray-500 text-sm text-center'>

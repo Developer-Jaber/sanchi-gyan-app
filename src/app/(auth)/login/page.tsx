@@ -105,7 +105,7 @@ export default function LoginPage () {
             disabled={loading}
             className='bg-[#9FD9D8] hover:bg-[#7bb9b8] py-2 rounded-full font-semibold text-white transition'
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? "Signing in..." : "Sign in"}
           </button>
 
           <div className='flex justify-between text-gray-500 text-sm'>
@@ -113,7 +113,7 @@ export default function LoginPage () {
               Forgot Password?
             </Link>
             <Link href='/register' className='hover:text-[#3835A1]'>
-              Don't have an account? Sign up
+              {loading ? "Creating account..." : "Sign up"}
             </Link>
           </div>
         </form>
