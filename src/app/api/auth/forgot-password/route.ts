@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
             resetUrl, // Remove this in production, send via email instead
         })
     } catch (error) {
-        console.error("Forgot password error:", error)
+        // console.error("Forgot password error:", error)
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }

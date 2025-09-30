@@ -38,28 +38,28 @@ const teamMembers = [
   {
     name: "Dr. Anil Sharma",
     role: "Founder & CEO",
-    image: "",
+    image: "https://img.icons8.com/?size=100&id=103890&format=png&color=000000",
     bio: "Former Professor at TU with 15+ years in education",
     specialties: ["Curriculum Design", "Educational Technology"]
   },
   {
     name: "Prof. Maya Gurung",
     role: "Academic Director",
-    image: "",
+    image: "https://img.icons8.com/?size=100&id=48446&format=png&color=000000",
     bio: "M.Ed. from Kathmandu University, 12 years teaching experience",
     specialties: ["Science Education", "Teacher Training"]
   },
   {
     name: "Mr. Ramesh Adhikari",
     role: "Head of Content",
-    image: "",
+    image: "https://img.icons8.com/?size=100&id=103890&format=png&color=000000",
     bio: "MA in English Literature, Curriculum Development Expert",
     specialties: ["Content Strategy", "Quality Assurance"]
   },
   {
     name: "Ms. Sunita Karki",
     role: "Student Success Manager",
-    image: "",
+    image: "https://img.icons8.com/?size=100&id=48446&format=png&color=000000",
     bio: "Psychology Graduate, Student Counseling Specialist",
     specialties: ["Student Support", "Progress Monitoring"]
   }
@@ -212,13 +212,13 @@ export default function About() {
                 className="group text-center"
               >
                 <div className="relative mb-6">
-                  <Image
+                  {/* <Image
                     src={member.image}
                     alt={member.name}
                     width={300}
                     height={300}
                     className="shadow-lg mx-auto rounded-2xl group-hover:scale-105 transition-transform duration-300"
-                  />
+                  /> */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
                 </div>
                 <h3 className="mb-1 font-bold text-gray-900 text-lg">{member.name}</h3>

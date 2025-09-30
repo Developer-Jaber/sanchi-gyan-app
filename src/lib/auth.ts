@@ -1,11 +1,9 @@
 import { NextAuthOptions } from "next-auth"
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
 import clientPromise from "./mongodb"
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -20,7 +18,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           const client = await clientPromise
-          const users = client.db(process.env.DB_NAME).collection("users")
+          const users = client.db(process.env.MONGODB_NAME).collection("users")
           
           const user = await users.findOne({ email: credentials.email })
           
@@ -43,30 +41,37 @@ export const authOptions: NextAuthOptions = {
             name: user.name,
           }
         } catch (error) {
-          console.error("Authorization error:", error)
+          // console.error("Authorization error:", error)
           return null
         }
       }
     })
   ],
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60 //30 days
   },
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.email = user.email
+        token.name = user.name
       }
       return token
     },
     async session({ session, token }) {
-      if (token) {
+      if (token && session.user) {
         session.user.id = token.id as string
+        session.user.email = token.email as string
+        session.user.name = token.name as string
       }
       return session
     }
-  }
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development"
 }

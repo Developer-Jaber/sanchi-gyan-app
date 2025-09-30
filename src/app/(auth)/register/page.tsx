@@ -44,7 +44,7 @@ export default function SignupPage () {
         setError(data.message || 'An error occurred.')
       } else {
         alert('Signup successful! Please log in.')
-        router.push('/')
+        router.push('/login')
       }
     } catch (error) {
       setError("An error occured. Please try again.")

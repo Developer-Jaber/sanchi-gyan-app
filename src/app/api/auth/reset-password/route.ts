@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
             message: "Password reset successfully"
         })
     } catch (error) {
-        console.error("Reset password error:", error)
+        // console.error("Reset password error:", error)
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }
