@@ -5,7 +5,7 @@ import { FaUser, FaLock, FaArrowCircleLeft } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import api from '@/lib/axios'
+import { signIn } from 'next-auth/react'
 
 export default function LoginPage () {
   const [form, setForm] = useState({
@@ -13,6 +13,7 @@ export default function LoginPage () {
     password: ''
   })
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,23 +23,24 @@ export default function LoginPage () {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
     try {
-      const response = await api.post('/auth/login', {
+      const result = await signIn('credentials', {
         email: form.email,
-        password: form.password
+        password: form.password,
+        redirect: false
       })
-      localStorage.setItem('token', response.data.access_token)
-      alert('Login successful!')
-      router.push('/dashboard')
-    } catch (err) {
-      let errorMessage = 'Login failed. Try again.'
 
-      if (err instanceof Error) {
-        errorMessage = err.message
-      } else if (typeof err === 'string') {
-        errorMessage = err
+      if (result?.error) {
+        setError('Invalid credentials')
+      } else {
+        router.push('/')
+        router.refresh()
       }
-      setError(errorMessage)
+    } catch (error) {
+      setError('An error occurred. Please try again.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -64,7 +66,11 @@ export default function LoginPage () {
           <h2 className='font-bold text-gray-700 text-2xl md:text-left text-center'>
             Welcome Back
           </h2>
-          {error && <p className='text-red-500 text-sm'>{error}</p>}
+          {error && (
+            <div className='bg-red-100 px-4 py-3 border border-red-400 rounded text-red-700'>
+              {error}
+            </div>
+          )}
 
           {/* Email */}
           <div className='flex items-center space-x-3 px-4 py-2 border rounded-full'>
@@ -96,9 +102,10 @@ export default function LoginPage () {
 
           <button
             type='submit'
+            disabled={loading}
             className='bg-[#9FD9D8] hover:bg-[#7bb9b8] py-2 rounded-full font-semibold text-white transition'
           >
-            Log In
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
 
           <div className='flex justify-between text-gray-500 text-sm'>
@@ -106,7 +113,7 @@ export default function LoginPage () {
               Forgot Password?
             </Link>
             <Link href='/register' className='hover:text-[#3835A1]'>
-              Create Account
+              Don't have an account? Sign up
             </Link>
           </div>
         </form>

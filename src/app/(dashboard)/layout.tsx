@@ -1,15 +1,16 @@
-import { AuthProvider } from '@/lib/auth-context'
+
 import React from 'react'
 import DashboardLayout from './_components/dashboard-layout'
+import AuthSessionProvider from '../providers/session-provider'
 
 export default function RootLayout ({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div>
-      <AuthProvider>
+      <AuthSessionProvider>
         <DashboardLayout>{children}</DashboardLayout>
-      </AuthProvider>
+      </AuthSessionProvider>
     </div>
   )
 }
