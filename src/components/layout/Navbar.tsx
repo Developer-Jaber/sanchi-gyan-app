@@ -5,21 +5,59 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../public/Untitled design (5).png'
 import Button from '../shared/Button'
+import { useSession } from 'next-auth/react'
+
+interface NavLink {
+  id: number
+  name: string
+  href: string
+  requiresAuth?: boolean
+  role?: string[]
+}
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
+  const { data: session, status } = useSession()
+  const [isMounted, setIsMounted] = useState(false)
 
-  const navLink = [
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  const getDashboardHref = () => {
+    console.log(session)
+    if (!session?.user?.role) return '/login' // Default fallback
+
+    switch (session.user.role.toLowerCase()) {
+      case 'admin':
+        return '/admin'
+      case 'student':
+        return '/student'
+      case 'teacher':
+        return '/teacher'
+      default:
+        return '/dashboard'
+    }
+  }
+
+  const getNavLinks = (): NavLink[] => [
     { id: 1, name: 'Home', href: '/' },
     { id: 2, name: 'Courses', href: '/courses' },
     { id: 3, name: 'Pricing', href: '/subscription' },
     { id: 4, name: 'About', href: '/about' },
     { id: 5, name: 'Contact', href: '/contact' },
-    { id: 6, name: 'Careers', href: '/careers' }
+    { id: 6, name: 'Careers', href: '/careers' },
+    {
+      id: 7,
+      name: 'Dashboard',
+      href: getDashboardHref(),
+      requiresAuth: true,
+      role: ['admin', 'student', 'teacher']
+    }
   ]
 
-   // Navbar scroll effect
+  // Navbar scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) setScrolled(true)
@@ -30,27 +68,44 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Filter links based on auth status and optionally roles
+  const filteredLinks = getNavLinks().filter(link => {
+    // If link doesn't require auth, show it to everyone
+    if (!link.requiresAuth) return true
+
+    // If link requires auth but user isn't authenticated, hide it
+    if (status !== 'authenticated') return false
+
+    // If link has specific role requirements, check them
+    if (link.role && session?.user?.role) {
+      return link.role.includes(session.user.role.toLowerCase())
+    }
+
+    // If no role requirements, show to all authenticated users
+    return true
+  })
+
+  console.log(session)
 
   return (
-    <nav className={`z-50 fixed w-full transition-all duration-300 ${
+    <nav
+      className={`z-50 fixed w-full transition-all duration-300 ${
         scrolled
           ? 'bg-white/90 shadow-md py-2 backdrop-blur-sm'
           : 'bg-transparent py-5'
-      }`}>
+      }`}
+    >
       <div className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'>
         <div className='flex justify-between h-16'>
           <div className='flex items-center'>
             <Link href='/' className='flex flex-shrink-0 items-center'>
-              {/* <span className='font-bold text-3xl'>
-                Sanchi Gyan
-              </span> */}
-              <Image src={Logo} width={250} alt='Sanchi Gyan'/>
+              <Image src={Logo} width={250} alt='Sanchi Gyan' />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className='hidden md:flex items-center space-x-4'>
-            {navLink.map(link => {
+            {filteredLinks.map(link => {
               return (
                 <Link
                   key={link.id}
@@ -63,17 +118,13 @@ const Navbar = () => {
             })}
 
             <div className='flex space-x-4'>
-              {/* <Link
-                href='/login'
-              >
-                <Button variant='secondary' className='px-4 py-2'>Login</Button>
-              </Link> */}
-              
-              <Link
-                href='/register'
-              >
-                <Button className='px-4 py-2'>Get Started</Button>
-              </Link>
+              {isMounted && status === 'authenticated' ? (
+                <></>
+              ) : (
+                <Link href='/register'>
+                  <Button className='px-4 py-2'>Get Started</Button>
+                </Link>
+              )}
             </div>
           </div>
 
@@ -116,7 +167,7 @@ const Navbar = () => {
       {isOpen && (
         <div className='md:hidden'>
           <div className='space-y-1 bg-white shadow-lg px-2 sm:px-3 pt-2 pb-3'>
-            {navLink.map(link => {
+            {filteredLinks.map(link => {
               return (
                 <Link
                   key={link.id}
