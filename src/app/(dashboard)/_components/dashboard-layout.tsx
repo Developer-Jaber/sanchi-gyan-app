@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { ReactNode, useState } from 'react'
 import {
   BarChart3,
@@ -44,12 +44,14 @@ import { MdAssignment } from 'react-icons/md'
 import { FaUserGraduate } from 'react-icons/fa'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-
+import * as Collapsible from '@radix-ui/react-collapsible'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import logo from '../../../../public/Untitled design (5).png'
 
 type RouteGroupType = {
   group: string
@@ -384,159 +386,158 @@ const ROUTE_GROUPS: RouteGroupType[] = [
       {
         href: '/student',
         label: 'Overview',
-        icon: <Store className='mr-2 size-3' />
+        icon: <Store className='mr-2 size-5' />
       },
       {
         href: '/student/analytics',
         label: 'My Progress',
-        icon: <BarChart3 className='mr-2 size-3' />
+        icon: <BarChart3 className='mr-2 size-5' />
       },
       {
         href: '/student/my-courses',
         label: 'My Courses',
-        icon: <BookOpen className='mr-2 size-3' />
+        icon: <BookOpen className='mr-2 size-5' />
       },
       {
         href: '/student/class-schedule',
         label: 'Class Schedule',
-        icon: <Calendar className='mr-2 size-3' />
+        icon: <Calendar className='mr-2 size-5' />
       },
       {
         href: '/student/video-lectures',
         label: 'Video Lectures',
-        icon: <PlayCircle className='mr-2 size-3' />
+        icon: <PlayCircle className='mr-2 size-5' />
       },
       {
         href: '/student/study-materials',
         label: 'Study Materials',
-        icon: <FileText className='mr-2 size-3' />
+        icon: <FileText className='mr-2 size-5' />
       },
       {
         href: '/student/resource-library',
         label: 'Resource Library',
-        icon: <Library className='mr-2 size-3' />
+        icon: <Library className='mr-2 size-5' />
       },
       {
         href: '/student/assignments',
         label: 'Assignments',
-        icon: <MdAssignment className='mr-2 size-3' />
+        icon: <MdAssignment className='mr-2 size-5' />
       },
       {
         href: '/student/quizzes',
         label: 'Quizzes & Tests',
-        icon: <HelpCircle className='mr-2 size-3' />
+        icon: <HelpCircle className='mr-2 size-5' />
       },
       {
         href: '/student/exams',
         label: 'Exams',
-        icon: <FileCheck className='mr-2 size-3' />
+        icon: <FileCheck className='mr-2 size-5' />
       },
       {
         href: '/student/submissions',
         label: 'My Submissions',
-        icon: <Upload className='mr-2 size-3' />
+        icon: <Upload className='mr-2 size-5' />
       },
       {
         href: '/student/grades',
         label: 'Grades & Report Card',
-        icon: <Award className='mr-2 size-3' />
+        icon: <Award className='mr-2 size-5' />
       },
       {
         href: '/student/transcripts',
         label: 'Transcripts',
-        icon: <FileText className='mr-2 size-3' />
+        icon: <FileText className='mr-2 size-5' />
       },
       {
         href: '/student/performance',
         label: 'Performance Analytics',
-        icon: <TrendingUp className='mr-2 size-3' />
+        icon: <TrendingUp className='mr-2 size-5' />
       },
       {
         href: '/student/achievements',
         label: 'Achievements',
-        icon: <Trophy className='mr-2 size-3' />
+        icon: <Trophy className='mr-2 size-5' />
       },
       {
         href: '/student/messages',
         label: 'Messages',
-        icon: <MessageSquare className='mr-2 size-3' />
+        icon: <MessageSquare className='mr-2 size-5' />
       },
       {
         href: '/student/discussions',
         label: 'Discussion Forums',
-        icon: <MessagesSquare className='mr-2 size-3' />
+        icon: <MessagesSquare className='mr-2 size-5' />
       },
       {
         href: '/student/teachers',
         label: 'My Teachers',
-        icon: <UserCheck className='mr-2 size-3' />
+        icon: <UserCheck className='mr-2 size-5' />
       },
       {
         href: '/student/announcements',
         label: 'Announcements',
-        icon: <Megaphone className='mr-2 size-3' />
+        icon: <Megaphone className='mr-2 size-5' />
       },
       {
         href: '/student/profile',
         label: 'My Profile',
-        icon: <User className='mr-2 size-3' />
+        icon: <User className='mr-2 size-5' />
       },
       {
         href: '/student/settings',
         label: 'Settings',
-        icon: <Settings className='mr-2 size-3' />
+        icon: <Settings className='mr-2 size-5' />
       },
       {
         href: '/student/support',
         label: 'Help & Support',
-        icon: <Headphones className='mr-2 size-3' />
+        icon: <Headphones className='mr-2 size-5' />
       },
       {
         href: '/student/parent-access',
         label: 'Parent Access',
-        icon: <Users className='mr-2 size-3' />
+        icon: <Users className='mr-2 size-5' />
       }
     ]
   }
 ]
 
+
 type RouteGroupProps = RouteGroupType
 
 const RouteGroup = ({ group, items }: RouteGroupProps) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const pathname = usePathname()
 
   return (
-    <Collapsible open={open} onOpenChange={setOpen}>
-      <CollapsibleTrigger asChild>
+    <Collapsible.Root open={open} onOpenChange={setOpen}>
+      {/* <Collapsible.Trigger asChild>
         <Button
           className='flex justify-between w-full font-normal text-foreground/80'
           variant='ghost'
         >
           {group}
           <div className={`transition-transform ${open ? 'rotate-180' : ''}`}>
-            <ChevronDown />
+            <ChevronDown className="w-4 h-4" />
           </div>
         </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent forceMount>
+      </Collapsible.Trigger> */}
+      <Collapsible.Content forceMount>
         <motion.div
-          className={`flex flex-col gap-2 ${
-            !open ? 'pointer-events-none' : ''
-          }`}
+          className={`flex flex-col gap-2 ${!open ? 'pointer-events-none' : ''}`}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
           transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           {items.map(item => (
             <Button
-              className='justify-start w-full font-normal'
+              className='justify-start w-full font-medium text-[#06a6ae] text-2xl'
               variant='link'
               asChild
               key={item.href}
             >
               <Link
-                className={`flex items-center rounded-md px-5 py-1 transition-all ${
+                className={`flex items-center  rounded-md px-5 py-1 transition-all ${
                   pathname === item.href
                     ? 'bg-foreground/10 hover:bg-foreground/5'
                     : 'hover:bg-foreground/10'
@@ -549,8 +550,8 @@ const RouteGroup = ({ group, items }: RouteGroupProps) => {
             </Button>
           ))}
         </motion.div>
-      </CollapsibleContent>
-    </Collapsible>
+      </Collapsible.Content>
+    </Collapsible.Root>
   )
 }
 
@@ -559,52 +560,84 @@ type DashboardLayoutProps = {
 }
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const [open, setOpen] = useState(true)
-  return (
-    <>
-      <div className='flex w-full'>
-        <Collapsible open={open} onOpenChange={setOpen}>
-          <CollapsibleTrigger asChild>
-            <Button size='icon' variant='outline'>
-              <Menu />
-            </Button>
-          </CollapsibleTrigger>
-        </Collapsible>
+  const { data: session } = useSession()
 
-        <Collapsible
-          className='left-0 z-20 fixed to-0 h-dvh'
-          open={open}
-          onOpenChange={setOpen}
-        >
-          <CollapsibleContent forceMount>
-            
-              <div
-                className={`bg-background fixed top-0 left-0 h-screen w-64 border p-4 transition-transform duration-300 ${
-                  open ? 'translate-x-0' : '-translate-x-full'
-                }`}
-              >
-                
-                <Separator className='my-2' />
-                <div className='mt-4'>
-                  {ROUTE_GROUPS.map(routeGroup => (
-                    <RouteGroup {...routeGroup} key={routeGroup.group} />
-                  ))}
-                </div>
-               
-              </div>
-            
-          </CollapsibleContent>
-        </Collapsible>
-        <main
-          className={`transition-margin flex-1 p-4 duration-300 w-full ${
-            open ? 'ml-64' : 'ml-0'
-          }`}
-        >
-          {children}
+  if (!session) {
+    return null
+  }
+
+  const userRole = session.user.role
+
+  const filteredRouteGroups = ROUTE_GROUPS.filter(group => {
+    if (userRole === 'admin') {
+      return group.group === 'Admin Dashboard'
+    } else if (userRole === 'student') {
+      return group.group === 'Student Dashboard'
+    } else if (userRole === 'teacher') {
+      return group.group === 'Teacher Dashboard'
+    }
+    return false
+  })
+
+  return (
+    <SidebarProvider defaultOpen={true}>
+      <div className='flex w-full min-h-screen'>
+        {/* Sidebar */}
+        <Sidebar collapsible="icon">
+          <SidebarHeader>
+            <div className='flex justify-center items-center p-2'>
+              <Link href='/' className='flex-shrink-0'>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Image
+                    width={170}
+                    height={60}
+                    className='rounded-2xl'
+                    src={logo}
+                    alt='college-fair'
+                  />
+                </motion.div>
+              </Link>
+            </div>
+          </SidebarHeader>
+
+          <Separator className='my-2' />
+
+          <SidebarContent className='px-2'>
+            {filteredRouteGroups.map(routeGroup => (
+              <RouteGroup {...routeGroup} key={routeGroup.group} />
+            ))}
+          </SidebarContent>
+
+          <Separator className='my-2' />
+
+          <SidebarFooter>
+            {/* Add user info or logout button here */}
+          </SidebarFooter>
+        </Sidebar>
+
+        {/* Main Content */}
+        <main className='flex flex-col flex-1 w-full'>
+          {/* Header with Sidebar Trigger */}
+          <header className='top-0 z-10 sticky flex items-center gap-4 bg-background px-4 py-3'>
+            <SidebarTrigger />
+            <h1 className='font-semibold text-lg'>
+              {userRole === 'admin' && 'Admin Dashboard'}
+              {userRole === 'student' && 'Student Dashboard'}
+              {userRole === 'teacher' && 'Teacher Dashboard'}
+            </h1>
+          </header>
+
+          {/* Page Content */}
+          <div className='flex-1 p-6'>
+            {children}
+          </div>
         </main>
       </div>
-    </>
+    </SidebarProvider>
   )
 }
 
-export default DashboardLayout;
+export default DashboardLayout
