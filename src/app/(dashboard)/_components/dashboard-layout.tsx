@@ -40,7 +40,7 @@ import {
   ChevronDown,
   Menu
 } from 'lucide-react'
-import { MdAssignment } from 'react-icons/md'
+import { MdAssignment, MdSettingsApplications } from 'react-icons/md'
 import { FaUserGraduate } from 'react-icons/fa'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -72,6 +72,11 @@ const ROUTE_GROUPS: RouteGroupType[] = [
         href: '/admin',
         label: 'Overview',
         icon: <Store className='mr-2 size-3' />
+      },
+       {
+        href: '/admin/applications',
+        label: 'Applications',
+        icon: <MdSettingsApplications className='mr-2 size-3' />
       },
       {
         href: '/admin/analytics',
