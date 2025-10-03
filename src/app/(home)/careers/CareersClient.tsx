@@ -370,7 +370,7 @@ export default function CareersClient({ initialJobs }: Props) {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <Link href="">
+                    <Link href={`/careers/${job._id}`}>
                         <Button 
                       onClick={() => setSelectedJob(job._id)}
                       variant={selectedJob === job._id ? "primary" : "secondary"}
