@@ -71,172 +71,173 @@ const ROUTE_GROUPS: RouteGroupType[] = [
       {
         href: '/admin',
         label: 'Overview',
-        icon: <Store className='mr-2 size-3' />
+        icon: <Store className='mr-2 size-5' />
       },
        {
         href: '/admin/applications',
         label: 'Applications',
-        icon: <MdSettingsApplications className='mr-2 size-3' />
+        icon: <MdSettingsApplications className='mr-2 size-5' />
       },
       {
         href: '/admin/analytics',
         label: 'Analytics',
-        icon: <BarChart3 className='mr-2 size-3' />
+        icon: <BarChart3
+         className='mr-2 size-5' />
       },
       {
         href: '/admin/reports',
         label: 'Reports',
-        icon: <FileText className='mr-2 size-3' />
+        icon: <FileText className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/classes',
         label: 'Classes (2-10)',
-        icon: <GraduationCap className='mr-2 size-3' />
+        icon: <GraduationCap className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/subjects',
         label: 'Subjects',
-        icon: <BookOpen className='mr-2 size-3' />
+        icon: <BookOpen className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/courses',
         label: 'Courses',
-        icon: <BookOpen className='mr-2 size-3' />
+        icon: <BookOpen className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/curriculum',
         label: 'Curriculum',
-        icon: <ClipboardList className='mr-2 size-3' />
+        icon: <ClipboardList className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/lessons',
         label: 'Lessons & Content',
-        icon: <Video className='mr-2 size-3' />
+        icon: <Video className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/assignments',
         label: 'Assignments',
-        icon: <MdAssignment className='mr-2 size-3' />
+        icon: <MdAssignment className='mr-2 size-5' />
       },
       {
         href: '/admin/academic/exams',
         label: 'Exams & Quizzes',
-        icon: <FileCheck className='mr-2 size-3' />
+        icon: <FileCheck className='mr-2 size-5' />
       },
       {
         href: '/admin/users/students',
         label: 'Students',
-        icon: <FaUserGraduate className='mr-2 size-3' />
+        icon: <FaUserGraduate className='mr-2 size-5' />
       },
       {
         href: '/admin/users/teachers',
         label: 'Teachers',
-        icon: <UserCheck className='mr-2 size-3' />
+        icon: <UserCheck className='mr-2 size-5' />
       },
       {
         href: '/admin/users/parents',
         label: 'Parents',
-        icon: <Users className='mr-2 size-3' />
+        icon: <Users className='mr-2 size-5' />
       },
       {
         href: '/admin/users/admins',
         label: 'Admins',
-        icon: <Shield className='mr-2 size-3' />
+        icon: <Shield className='mr-2 size-5' />
       },
       {
         href: '/admin/users/roles',
         label: 'Roles & Permissions',
-        icon: <KeyRound className='mr-2 size-3' />
+        icon: <KeyRound className='mr-2 size-5' />
       },
       {
         href: '/admin/content/videos',
         label: 'Video Lectures',
-        icon: <PlayCircle className='mr-2 size-3' />
+        icon: <PlayCircle className='mr-2 size-5' />
       },
       {
         href: '/admin/content/notes',
         label: 'Study Materials',
-        icon: <FileText className='mr-2 size-3' />
+        icon: <FileText className='mr-2 size-5' />
       },
       {
         href: '/admin/content/quizzes',
         label: 'Interactive Quizzes',
-        icon: <HelpCircle className='mr-2 size-3' />
+        icon: <HelpCircle className='mr-2 size-5' />
       },
       {
         href: '/admin/content/library',
         label: 'Resource Library',
-        icon: <Library className='mr-2 size-3' />
+        icon: <Library className='mr-2 size-5' />
       },
       {
         href: '/admin/content/announcements',
         label: 'Announcements',
-        icon: <Megaphone className='mr-2 size-3' />
+        icon: <Megaphone className='mr-2 size-5' />
       },
       {
         href: '/admin/finance/subscriptions',
         label: 'Subscriptions',
-        icon: <CreditCard className='mr-2 size-3' />
+        icon: <CreditCard className='mr-2 size-5' />
       },
       {
         href: '/admin/finance/transactions',
         label: 'Transactions',
-        icon: <Receipt className='mr-2 size-3' />
+        icon: <Receipt className='mr-2 size-5' />
       },
       {
         href: '/admin/finance/invoices',
         label: 'Invoices',
-        icon: <FileText className='mr-2 size-3' />
+        icon: <FileText className='mr-2 size-5' />
       },
       {
         href: '/admin/finance/payments',
         label: 'Payment Records',
-        icon: <Wallet className='mr-2 size-3' />
+        icon: <Wallet className='mr-2 size-5' />
       },
       {
         href: '/admin/finance/scholarships',
         label: 'Scholarships',
-        icon: <Award className='mr-2 size-3' />
+        icon: <Award className='mr-2 size-5' />
       },
       {
         href: '/admin/communication/messages',
         label: 'Messages',
-        icon: <MessageSquare className='mr-2 size-3' />
+        icon: <MessageSquare className='mr-2 size-5' />
       },
       {
         href: '/admin/communication/forums',
         label: 'Discussion Forums',
-        icon: <MessagesSquare className='mr-2 size-3' />
+        icon: <MessagesSquare className='mr-2 size-5' />
       },
       {
         href: '/admin/communication/support',
         label: 'Support Tickets',
-        icon: <Headphones className='mr-2 size-3' />
+        icon: <Headphones className='mr-2 size-5' />
       },
       {
         href: '/admin/communication/notifications',
         label: 'Notifications',
-        icon: <Bell className='mr-2 size-3' />
+        icon: <Bell className='mr-2 size-5' />
       },
       {
-        href: '/admin/settings/general',
+        href: '/admin/settings',
         label: 'General Settings',
-        icon: <Settings className='mr-2 size-3' />
+        icon: <Settings className='mr-2 size-5' />
       },
       {
         href: '/admin/settings/academic-year',
         label: 'Academic Year',
-        icon: <Calendar className='mr-2 size-3' />
+        icon: <Calendar className='mr-2 size-5' />
       },
       {
         href: '/admin/settings/backup',
         label: 'Backup & Restore',
-        icon: <Database className='mr-2 size-3' />
+        icon: <Database className='mr-2 size-5' />
       },
       {
         href: '/admin/settings/logs',
         label: 'System Logs',
-        icon: <Activity className='mr-2 size-3' />
+        icon: <Activity className='mr-2 size-5' />
       }
     ]
   },
