@@ -26,6 +26,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import ProtectedRoute from "@/components/auth/ProtectedRoute"
 
 const stats = [
   {
@@ -137,7 +138,8 @@ const quickStats = [
 
 export default function AdminOverview() {
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 p-6 min-h-screen">
+    <ProtectedRoute allowedRoles={['admin']}>
+      <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 p-6 min-h-screen">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
@@ -385,5 +387,6 @@ export default function AdminOverview() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   )
 }
