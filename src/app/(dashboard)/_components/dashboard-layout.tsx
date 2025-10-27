@@ -36,13 +36,11 @@ import {
   ClipboardCheck,
   PlusCircle,
   Upload,
-  Trophy,
-  ChevronDown,
-  Menu
+  Trophy
 } from 'lucide-react'
 import { MdAssignment, MdSettingsApplications } from 'react-icons/md'
 import { FaUserGraduate } from 'react-icons/fa'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -50,7 +48,14 @@ import { Separator } from '@/components/ui/separator'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarProvider,
+  SidebarTrigger
+} from '@/components/ui/sidebar'
 import logo from '../../../../public/Untitled design (5).png'
 
 type RouteGroupType = {
@@ -73,7 +78,7 @@ const ROUTE_GROUPS: RouteGroupType[] = [
         label: 'Overview',
         icon: <Store className='mr-2 size-5' />
       },
-       {
+      {
         href: '/admin/applications',
         label: 'Applications',
         icon: <MdSettingsApplications className='mr-2 size-5' />
@@ -81,8 +86,7 @@ const ROUTE_GROUPS: RouteGroupType[] = [
       {
         href: '/admin/analytics',
         label: 'Analytics',
-        icon: <BarChart3
-         className='mr-2 size-5' />
+        icon: <BarChart3 className='mr-2 size-5' />
       },
       {
         href: '/admin/reports',
@@ -508,29 +512,19 @@ const ROUTE_GROUPS: RouteGroupType[] = [
   }
 ]
 
-
 type RouteGroupProps = RouteGroupType
 
-const RouteGroup = ({ group, items }: RouteGroupProps) => {
+const RouteGroup = ({ items }: RouteGroupProps) => {
   const [open, setOpen] = useState(true)
   const pathname = usePathname()
 
   return (
     <Collapsible.Root open={open} onOpenChange={setOpen}>
-      {/* <Collapsible.Trigger asChild>
-        <Button
-          className='flex justify-between w-full font-normal text-foreground/80'
-          variant='ghost'
-        >
-          {group}
-          <div className={`transition-transform ${open ? 'rotate-180' : ''}`}>
-            <ChevronDown className="w-4 h-4" />
-          </div>
-        </Button>
-      </Collapsible.Trigger> */}
       <Collapsible.Content forceMount>
         <motion.div
-          className={`flex flex-col gap-2 ${!open ? 'pointer-events-none' : ''}`}
+          className={`flex flex-col gap-2 ${
+            !open ? 'pointer-events-none' : ''
+          }`}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
           transition={{ duration: 0.2, ease: 'easeInOut' }}
@@ -589,7 +583,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <SidebarProvider defaultOpen={true}>
       <div className='flex w-full min-h-screen'>
         {/* Sidebar */}
-        <Sidebar collapsible="icon">
+        <Sidebar collapsible='icon'>
           <SidebarHeader>
             <div className='flex justify-center items-center p-2'>
               <Link href='/' className='flex-shrink-0'>
@@ -637,9 +631,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </header>
 
           {/* Page Content */}
-          <div className='flex-1 p-6'>
-            {children}
-          </div>
+          <div className='flex-1 p-6'>{children}</div>
         </main>
       </div>
     </SidebarProvider>

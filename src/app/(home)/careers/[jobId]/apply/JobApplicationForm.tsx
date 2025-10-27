@@ -92,8 +92,8 @@ export default function JobApplicationForm({ job, userEmail, userName }: Props) 
       setTimeout(() => {
         router.push('/careers')
       }, 3000)
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong')
+    } catch {
+      setError('Something went wrong')
     } finally {
       setLoading(false)
     }
@@ -110,7 +110,7 @@ export default function JobApplicationForm({ job, userEmail, userName }: Props) 
           <CheckCircle className="mx-auto mb-6 w-20 h-20 text-green-500" />
           <h2 className="mb-4 font-bold text-gray-900 text-3xl">Application Submitted!</h2>
           <p className="mb-6 text-gray-600">
-            Thank you for applying. We'll review your application and get back to you soon.
+            Thank you for applying. We&apos;ll review your application and get back to you soon.
           </p>
           <Link href="/careers">
             <Button>Back to Careers</Button>
@@ -225,8 +225,8 @@ export default function JobApplicationForm({ job, userEmail, userName }: Props) 
               >
                 <option value="">Select qualification</option>
                 <option value="High School">High School</option>
-                <option value="Bachelor's Degree">Bachelor's Degree</option>
-                <option value="Master's Degree">Master's Degree</option>
+                <option value="Bachelor&apos;s Degree">Bachelor&apos;s Degree</option>
+                <option value="Master&apos;s Degree">Master&apos;s Degree</option>
                 <option value="PhD">PhD</option>
               </select>
             </div>
@@ -266,7 +266,7 @@ export default function JobApplicationForm({ job, userEmail, userName }: Props) 
                 onChange={handleInputChange}
                 rows={5}
                 className="px-4 py-3 border border-gray-300 focus:border-transparent rounded-lg focus:ring-[#06a6ae] focus:ring-2 w-full"
-                placeholder="Tell us why you're a great fit for this role..."
+                placeholder="Tell us why you&apos;re a great fit for this role..."
               />
             </div>
 

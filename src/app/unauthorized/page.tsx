@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { ShieldX, ArrowLeft, Home } from "lucide-react"
+import { ShieldX, Home } from "lucide-react"
 import Button from "@/components/shared/Button"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
@@ -31,13 +31,13 @@ export default function UnauthorizedPage() {
         </h1>
         
         <p className="mb-2 text-gray-600 text-lg">
-          You don't have permission to access this page.
+          You don&apos;t have permission to access this page.
         </p>
 
         {session && (
           <div className="bg-yellow-50 mb-6 p-4 border border-yellow-200 rounded-lg">
             <p className="text-yellow-800 text-sm">
-              You're logged in as: <strong>{session.user.email}</strong>
+              You&apos;re logged in as: <strong>{session.user.email}</strong>
               <br />
               Role: <strong className="uppercase">{session.user.role}</strong>
             </p>

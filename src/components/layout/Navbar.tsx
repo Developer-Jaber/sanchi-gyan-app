@@ -26,7 +26,6 @@ const Navbar = () => {
   }, [])
 
   const getDashboardHref = () => {
-    console.log(session)
     if (!session?.user?.role) return '/login' // Default fallback
 
     switch (session.user.role.toLowerCase()) {
@@ -85,7 +84,6 @@ const Navbar = () => {
     return true
   })
 
-  console.log(session)
 
   return (
     <nav
@@ -125,6 +123,13 @@ const Navbar = () => {
                   <Button className='px-4 py-2'>Get Started</Button>
                 </Link>
               )}
+            </div>
+            <div>
+              {
+                isMounted && session?.user?.role === 'user' ?(
+                  <Link href='/userprofile'>My Profile</Link>
+                ): null
+              }
             </div>
           </div>
 

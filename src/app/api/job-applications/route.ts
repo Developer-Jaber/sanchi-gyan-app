@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     const resumeFile = formData.get("resume") as File
 
     // Validate required fields
-    if (!fullName || !address || !email || !phone || !education || !resumeFile) {
+    if (!fullName || !address || !email || !phone || !education ) {
       return NextResponse.json(
         { error: "All required fields must be filled" },
         { status: 400 }

@@ -35,14 +35,11 @@ import {
 } from '@/components/ui/select'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import Button from '@/components/shared/Button'
 import { signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 
 export default function StudentSettings () {
-  const router = useRouter()
   const [activeTab, setActiveTab] = useState('profile')
   const [formData, setFormData] = useState({
     // Profile
@@ -74,25 +71,23 @@ export default function StudentSettings () {
     dataSharing: false
   })
 
-  const [isEditing, setIsEditing] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }))
   }
 
-  const handleSave = () => {
-    setIsEditing(false)
-    // Save logic would go here
-  }
+  // const handleSave = () => {
+  //   setIsEditing(false)
+  //   // Save logic would go here
+  // }
 
-  const handleReset = () => {
-    // Reset logic would go here
-    setIsEditing(false)
-  }
+  // const handleReset = () => {
+  //   // Reset logic would go here
+  //   setIsEditing(false)
+  // }
 
   const handleSignOut = async () => {
     await signOut({ 
@@ -122,14 +117,14 @@ export default function StudentSettings () {
           <div className='flex gap-3'>
             <Button
               variant='secondary'
-              onClick={handleReset}
+              // onClick={handleReset}
               className='flex items-center gap-2 p-2 rounded-2xl'
             >
               <RotateCcw className='w-4 h-4' />
               Reset
             </Button>
             <Button
-              onClick={handleSave}
+              // onClick={handleSave}
               className='flex items-center gap-2 bg-gradient-to-r from-[#06a6ae] hover:from-[#059298] to-[#9AD0D3] hover:to-[#88c2c5]'
             >
               <Save className='w-4 h-4' />

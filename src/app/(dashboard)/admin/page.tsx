@@ -3,29 +3,22 @@ import { motion } from "framer-motion"
 import { 
   Users, 
   BookOpen, 
-  TrendingUp, 
   DollarSign, 
   Clock, 
   Award, 
   BarChart3,
   Calendar,
-  MessageSquare,
   Download,
-  Eye,
   MoreHorizontal,
   ArrowUp,
   ArrowDown,
-  UserCheck,
-  Video,
-  FileText,
   Shield
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import ProtectedRoute from "@/components/auth/ProtectedRoute"
 
 const stats = [
@@ -150,7 +143,7 @@ export default function AdminOverview() {
         >
           <div>
             <h1 className="font-bold text-gray-900 text-3xl">Dashboard Overview</h1>
-            <p className="mt-2 text-gray-600">Welcome back! Here's what's happening with Sanchi Gyan today.</p>
+            <p className="mt-2 text-gray-600">Welcome back! Here&apos;s what&apos;s happening with Sanchi Gyan today.</p>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="outline" className="flex items-center gap-2">

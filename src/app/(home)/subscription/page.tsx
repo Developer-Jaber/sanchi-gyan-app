@@ -3,11 +3,8 @@
 import { useState } from 'react'
 import Navbar from '@/components/layout/Navbar'
 
-export default function SubscriptionPage () {
-  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>(
-    'annual'
-  )
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
+export default function SubscriptionPage() {
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('annual')
 
   const plans = [
     {
@@ -112,6 +109,10 @@ export default function SubscriptionPage () {
 
   const calculateAnnualSavings = (monthlyPrice: number) => {
     return monthlyPrice * 12 - monthlyPrice * 10
+  }
+
+  const handlePlanSelection = (planId: string) => {
+    console.log('Selected plan:', planId)
   }
 
   return (
@@ -219,7 +220,7 @@ export default function SubscriptionPage () {
                   </div>
 
                   <button
-                    onClick={() => setSelectedPlan(plan.id)}
+                    onClick={() => handlePlanSelection(plan.id)}
                     className={`mt-6 w-full py-3 px-4 rounded-lg font-medium transition-colors ${
                       plan.popular
                         ? 'bg-indigo-600 text-white hover:bg-indigo-700'

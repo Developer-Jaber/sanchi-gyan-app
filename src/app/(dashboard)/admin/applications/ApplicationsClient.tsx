@@ -1,8 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Download, Search, Filter, Eye, Check, X } from 'lucide-react'
-import Button from '@/components/shared/Button'
+import { Download, Search, Eye, Check, X } from 'lucide-react'
 
 interface Application {
   _id: string
@@ -68,7 +67,7 @@ export default function ApplicationsClient ({ initialApplications }: Props) {
         )
       )
     } catch (error) {
-      alert('Failed to update status')
+      alert(error as string)
     } finally {
       setLoading(null)
     }

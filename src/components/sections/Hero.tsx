@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import heroImg from '../../../public/Hero_online_edu.png'
 import { motion } from 'framer-motion'
 import Button from '../shared/Button'
+import Image from 'next/image'
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -105,7 +106,9 @@ const Hero = () => {
             className='relative mt-16 md:mt-0 md:w-1/2'
           >
             <div className='relative'>
-              <img
+              <Image
+              height={300}
+              width={400}
                 src={heroImg.src}
                 alt='Online Learning'
                 className='shadow-2xl mx-auto rounded-2xl w-full max-w-lg hover:scale-105 transition-transform duration-700 transform'

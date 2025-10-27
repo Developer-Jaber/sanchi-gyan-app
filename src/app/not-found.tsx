@@ -1,7 +1,7 @@
-// app/not-found.tsx
+
 "use client"
 import { motion } from "framer-motion"
-import { Home, Search, ArrowLeft } from "lucide-react"
+import { Home, ArrowLeft } from "lucide-react"
 import Button from "@/components/shared/Button"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -34,7 +34,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="mb-8 text-gray-600 text-lg">
-            Sorry, the page you're looking for doesn't exist or has been moved.
+            Sorry, the page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
         </motion.div>
 

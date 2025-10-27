@@ -30,6 +30,7 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Button from '@/components/shared/Button'
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
+import { useSession } from 'next-auth/react'
 
 const currentCourses = [
   {
@@ -117,6 +118,7 @@ const quickStats = [
 ]
 
 export default function StudentDashboard () {
+   const {data: session} = useSession()
   return (
     <ProtectedRoute allowedRoles={['student']}>
       <div className='bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 min-h-screen'>
@@ -130,10 +132,10 @@ export default function StudentDashboard () {
           >
             <div>
               <h1 className='mb-2 font-bold text-gray-900 text-3xl md:text-4xl'>
-                Welcome back, <span className='text-[#06a6ae]'>Aarav!</span>
+                Welcome back, <span className='text-[#06a6ae]'>{session?.user?.name}</span>
               </h1>
               <p className='text-gray-600 text-lg'>
-                Here's your learning progress for today
+                Here&apos;s your learning progress for today
               </p>
             </div>
             <div className='flex items-center gap-4'>
@@ -303,7 +305,7 @@ export default function StudentDashboard () {
                   <CardHeader className='pb-4'>
                     <CardTitle className='flex items-center gap-2 font-bold text-xl'>
                       <Calendar className='w-5 h-5 text-[#06a6ae]' />
-                      Today's Schedule
+                      Today&apos;s Schedule
                     </CardTitle>
                     <CardDescription>Your classes for today</CardDescription>
                   </CardHeader>

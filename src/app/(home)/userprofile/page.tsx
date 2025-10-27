@@ -99,7 +99,7 @@ export default function StudentSettings () {
   }
 
   return (
-    <div className='bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 py-8 min-h-screen'>
+    <div className='bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 p-32 min-h-screen'>
       <div className='mx-auto px-6 max-w-8xl'>
         {/* Header */}
         <motion.div

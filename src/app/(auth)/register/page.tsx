@@ -47,7 +47,7 @@ export default function SignupPage () {
         router.push('/login')
       }
     } catch (error) {
-      setError("An error occured. Please try again.")
+      setError(error as string)
     }finally {
       setLoading(false)
     }

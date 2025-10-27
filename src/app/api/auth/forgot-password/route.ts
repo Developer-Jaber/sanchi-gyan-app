@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
             message: "Reset token generated",
             resetUrl, // Remove this in production, send via email instead
         })
-    } catch (error) {
+    } catch {
         // console.error("Forgot password error:", error)
         return NextResponse.json(
             { error: "Internal server error" },

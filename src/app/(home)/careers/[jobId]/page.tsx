@@ -13,7 +13,7 @@ async function getJobById(jobId: string) {
       .findOne({ _id: new ObjectId(jobId) })
     
     return JSON.parse(JSON.stringify(job))
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -1,7 +1,7 @@
-// app/(home)/careers/[jobId]/JobDetailsClient.tsx
+
 "use client"
 import { motion } from "framer-motion"
-import { MapPin, Clock, DollarSign, Briefcase, Calendar, ArrowLeft } from "lucide-react"
+import { MapPin, Clock,  Briefcase, Calendar, ArrowLeft } from "lucide-react"
 import Button from "@/components/shared/Button"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -26,7 +26,7 @@ interface Job {
 
 export default function JobDetailsClient({ job }: { job: Job }) {
   const router = useRouter()
-  const { data: session, status } = useSession()
+  const { status } = useSession()
   const [showLoginAlert, setShowLoginAlert] = useState(false)
 
   const handleApplyClick = () => {
